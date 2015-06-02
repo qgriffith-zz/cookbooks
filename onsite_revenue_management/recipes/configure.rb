@@ -15,7 +15,8 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
     source 'secrets.yml.erb'
     variables(
-      environment:
+      environment: deploy[:rails_env],
+      secrets:
         OpsWorks::Escape.escape_double_quotes(deploy[:environment_variables])
     )
 
