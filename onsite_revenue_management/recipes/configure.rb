@@ -10,8 +10,7 @@ node[:deploy].each do |application, deploy|
     source 'secrets.yml.erb'
     variables(
       environment: deploy[:rails_env],
-      secrets:
-        OpsWorks::Escape.escape_double_quotes(deploy[:environment_variables])
+      secrets: deploy[:environment_variables]
     )
 
     notifies :run, "execute[restart Rails app #{application}]"
@@ -30,9 +29,7 @@ node[:deploy].each do |application, deploy|
     source 'rx.yml.erb'
     variables(
       environment: deploy[:rails_env],
-      site:
-        OpsWorks::Escape.
-        escape_double_quotes(deploy[:environment_variables]['RX_API_SITE'])
+      site: deploy[:environment_variables]['RX_API_SITE'])
     )
 
     notifies :run, "execute[restart Rails app #{application}]"
