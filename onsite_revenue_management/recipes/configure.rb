@@ -29,7 +29,7 @@ node[:deploy].each do |application, deploy|
     source 'rx.yml.erb'
     variables(
       environment: deploy[:rails_env],
-      site: deploy[:environment_variables]['RX_API_SITE'])
+      site: deploy[:environment_variables]['RX_API_SITE']
     )
 
     notifies :run, "execute[restart Rails app #{application}]"
