@@ -3,7 +3,7 @@ node[:deploy].each do |application, deploy|
 
   crontab_path = File.join(deploy[:deploy_to], 'config', 'crontab')
 
-  execute "install #{application} crontab" do
+  execute "install #{application} crontab #{crontab_path}" do
     command "crontab -u #{deploy[:user]} #{crontab_path}"
     not_if do
       if ! File.exists?(crontab_path)
