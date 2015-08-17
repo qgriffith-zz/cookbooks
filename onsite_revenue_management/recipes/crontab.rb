@@ -1,7 +1,19 @@
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
 
-  crontab_path = File.join(deploy[:deploy_to], 'current', 'config', 'crontab')
+  rails_path = File.join(deploy[:deploy_to], 'current')
+  crontab_path = File.join(deploy[:home], 'crontab')
+
+  template crontab_path do
+    source "#{application}.crontab.erb"
+    mode '0644'
+    owner deploy[:user]
+    group deploy[:group]
+    variables(
+      rails_env: deploy[:rails_env],
+      rails_path: rails_path
+    )
+  end
 
   execute "crontab #{crontab_path}" do
     command "crontab -u #{deploy[:user]} #{crontab_path}"

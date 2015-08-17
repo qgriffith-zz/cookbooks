@@ -1,0 +1,6 @@
+# Note: OpsWorks Instances are UTC
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RAILS_ENV=<% @rails_env %>
+*/2 * * * * cd <%= @rails_path %> && bundle exec rake rx:crontest
+11 8 * * * cd  <%= @rails_path %> && bundle exec rake rx:publish
