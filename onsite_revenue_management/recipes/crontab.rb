@@ -10,7 +10,7 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     group deploy[:group]
     variables(
-      rails_env: deploy[:rails_env],
+      environment: deploy[:rails_env],
       rails_path: rails_path
     )
   end
