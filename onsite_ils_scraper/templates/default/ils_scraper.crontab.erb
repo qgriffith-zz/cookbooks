@@ -1,0 +1,5 @@
+# Note: OpsWorks Instances are UTC
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RAILS_ENV=<%= @environment %>
+<%= @schedule %> cd <%= @app_path %> && bundle exec rake scrape[<%= @sites.join(' ') %>]
