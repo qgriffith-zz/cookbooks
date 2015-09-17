@@ -2,4 +2,6 @@
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ILS_ENV=<%= @environment %>
+ILS_REDIS=<%= @redis_server %>
+ILS_VPN=<%= @vpn_server %>
 <%= @schedule %> cd <%= @app_path %> && bundle exec rake scrape[<%= @sites %>]
