@@ -10,9 +10,9 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     group deploy[:group]
     variables(
-      scredule: deploy[:environment_variables]['ILS_SCHEDULE'],
+      schedule: deploy[:environment_variables]['ILS_SCHEDULE'],
       environment: deploy[:environment_variables]['ILS_ENV'],
-      app_path: rails_path,
+      app_path: app_path,
       sites: deploy[:environment_variables]['ILS_SITES'],
     )
   end
