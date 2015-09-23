@@ -1,0 +1,6 @@
+# Note: OpsWorks Instances are UTC
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RAILS_ENV=<%= @environment %>
+1 18 * * * cd <%= @rails_path %> && bundle exec rake on_site:submit_ach_for_payments
+11 18 * * * cd  <%= @rails_path %> && bundle exec rake on_site:submit_ach_for_payout
