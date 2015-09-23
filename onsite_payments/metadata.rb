@@ -1,0 +1,5 @@
+name "onsite_payments"
+description "Configures Payments"
+maintainer "On-Site.com"
+license "(c) 2015 All Rights Reserved"
+version "0.2.4"
