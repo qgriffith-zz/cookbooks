@@ -46,6 +46,10 @@ script
 # this script runs in /bin/sh by default
 # respawn as bash so we can set up the environment
 exec /bin/bash <<EOT
- exec bundle exec sidekiq -i ${index} -c <%= @thread_count %> -e $ILS_ENV
+ exec bundle exec sidekiq -i ${index} \
+   -c <%= @thread_count %> \
+   -e $ILS_ENV \
+   -r <%= File.join(@app_path, 'lib', 'ils.rb') %> \
+   -C <%= File.join(@app_path, 'config', 'sidekiq.yml') %>
 EOT
 end script
