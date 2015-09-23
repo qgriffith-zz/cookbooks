@@ -21,7 +21,7 @@ node[:deploy].each do |application, deploy|
       if ! File.exists?(crontab_path)
         true
       else
-        current = `crontab -u #{deploy[:user]}`
+        current = `crontab -u #{deploy[:user]} -l`
         desired = File.read(crontab_path)
         current == desired
       end
