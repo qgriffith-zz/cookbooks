@@ -28,6 +28,7 @@ node[:deploy].each do |application, deploy|
     provider Chef::Provider::Service::Upstart
     subscribes :restart, "template[/etc/init/sidekiq.conf]", :delayed
     subscribes :restart, "template[/etc/init/workers.conf]", :delayed
+    subscribes :restart, "deploy[/srv/www/#{application}]", :delayed
     action [:enable, :start]
   end
 
