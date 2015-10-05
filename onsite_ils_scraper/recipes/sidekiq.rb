@@ -31,9 +31,4 @@ node[:deploy].each do |application, deploy|
     action [:enable, :start]
   end
 
-  # FHK - temporary workaround; forcing worker restart after any call
-  # of this recipe (not ideal, but we are calling it during "deploy",
-  # so it will serve for now).
-  execute "service workers restart"
-
 end
