@@ -21,6 +21,15 @@ node[:deploy].each do |application, deploy|
     )
   end
 
+  file "/home/deploy/debug" do
+    content <<-EOTXT
+      rm_uri: #{deploy[:environment_variables]['RM_URI']}
+      rm_api_token: #{deploy[:environment_variables]['RM_API_TOKEN']}
+
+       #{deploy[:environment_variables]}
+    EOTXT
+  end
+
   execute "crontab #{crontab_path}" do
     command "crontab -u #{deploy[:user]} #{crontab_path}"
     not_if do
