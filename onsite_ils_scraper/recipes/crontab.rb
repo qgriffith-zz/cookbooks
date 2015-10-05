@@ -16,6 +16,8 @@ node[:deploy].each do |application, deploy|
       sites: deploy[:environment_variables]['ILS_SITES'],
       redis_server: deploy[:environment_variables]['ILS_REDIS'],
       vpn_server: deploy[:environment_variables]['ILS_VPN'],
+      rm_uri: deploy[:environment_variables]['RM_URI'],
+      rm_api_token: deploy[:environment_variables]['RM_API_TOKEN'],
     )
   end
 

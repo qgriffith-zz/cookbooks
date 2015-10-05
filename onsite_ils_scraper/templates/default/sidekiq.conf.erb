@@ -35,10 +35,14 @@ instance $index
 env ILS_ENV=<%= @ils_env %>
 env ILS_REDIS=<%= @redis_server %>
 env ILS_VPN=<%= @vpn_server %>
+env RM_URI=<%= @rm_uri %>
+env RM_API_TOKEN=<% @rm_api_token %>
 
 export ILS_ENV
 export ILS_REDIS
 export ILS_VPN
+export RM_URI
+export RM_API_TOKEN
 
 chdir <%= @app_path %>
 
@@ -49,6 +53,7 @@ exec /bin/bash <<EOT
  exec bundle exec sidekiq -i ${index} \
    -c <%= @thread_count %> \
    -e $ILS_ENV \
+
    -r <%= File.join(@app_path, 'lib', 'ils.rb') %> \
    -C <%= File.join(@app_path, 'config', 'sidekiq.yml') %>
 EOT
