@@ -5,5 +5,5 @@ ILS_ENV=<%= @environment %>
 ILS_REDIS=<%= @redis_server %>
 ILS_VPN=<%= @vpn_server %>
 RM_URI=<%= @rm_uri %>
-RM_API_TOKEN=<% @rm_api_token %>
+RM_API_TOKEN=<%= @rm_api_token %>
 <%= @schedule %> cd <%= @app_path %> && bundle exec rake scrape[<%= @sites %>]
