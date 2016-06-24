@@ -1,4 +1,3 @@
-
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
 
@@ -12,7 +11,6 @@ node[:deploy].each do |application, deploy|
       environment: deploy[:rails_env],
       secrets: deploy[:environment_variables]
     )
-
     only_if do
       deploy[:database][:host].present? &&
         File.directory?("#{deploy[:deploy_to]}/shared/config/")
@@ -29,12 +27,10 @@ node[:deploy].each do |application, deploy|
       environment: deploy[:rails_env],
       site: deploy[:environment_variables]['RX_API_SITE']
     )
-
     only_if do
       deploy[:database][:host].present? &&
         File.directory?("#{deploy[:deploy_to]}/shared/config/")
     end
   end
-
 
 end
