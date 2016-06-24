@@ -33,4 +33,16 @@ node[:deploy].each do |application, deploy|
     end
   end
 
+  honeybadger_file = File.join(deploy[:current_path], 'config', 'honeybadger.yml')
+  template "#{deploy[:deploy_to]}/shared/config/honeybadger.yml" do
+    mode '0644'
+    owner deploy[:user]
+    group deploy[:group]
+    source 'honeybadger.yml.erb'
+    variables(secret: deploy[:environment_variables]['HONEYBADGER_API_SECRET'])
+    only_if do
+      deploy[:database][:host].present? &&
+        File.directory?("#{deploy[:deploy_to]}/shared/config/")
+    end
+  end
 end
