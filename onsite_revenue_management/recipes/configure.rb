@@ -1,8 +1,8 @@
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
 
-  node.set[:datadog][:tags][:env] = node[:deploy][application][:environment_variables]['RAILS_ENV']
-  node.set[:datadog][:api_key] = node[:deploy][application][:environment_variables]['DATDOG_KEY']
+  node.set[:datadog][:tags][:env] = deploy['rails_env']
+  node.set[:datadog][:api_key] = deploy[:environment_variables]['DATADOG_KEY']
   include_recipe 'datadog::dd-agent'
 
 
