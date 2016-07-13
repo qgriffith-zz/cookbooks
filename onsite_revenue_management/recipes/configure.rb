@@ -1,4 +1,5 @@
 node.set[:datadog][:tags][:env] = node[:deploy][application][:environment_variables]['RAILS_ENV']
+node.set[:datadog][:api_key] = node[:deploy][application][:environment_variables]['DATDOG_KEY']
 include_recipe 'datadog::dd-agent'
 
 node[:deploy].each do |application, deploy|
