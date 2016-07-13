@@ -1,9 +1,10 @@
-node.set[:datadog][:tags][:env] = node[:deploy][application][:environment_variables]['RAILS_ENV']
-node.set[:datadog][:api_key] = node[:deploy][application][:environment_variables]['DATDOG_KEY']
-include_recipe 'datadog::dd-agent'
-
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
+
+  node.set[:datadog][:tags][:env] = node[:deploy][application][:environment_variables]['RAILS_ENV']
+  node.set[:datadog][:api_key] = node[:deploy][application][:environment_variables]['DATDOG_KEY']
+  include_recipe 'datadog::dd-agent'
+
 
   secrets_file = File.join(deploy[:current_path], 'config', 'secrets.yml')
   template "#{deploy[:deploy_to]}/shared/config/secrets.yml" do
