@@ -3,6 +3,7 @@ node[:deploy].each do |application, deploy|
 
   node.set[:datadog][:tags][:env] = deploy['rails_env']
   node.set[:datadog][:api_key] = deploy[:environment_variables]['DATADOG_KEY']
+  node.set[:datadog][:hostname] = "rev.#{deploy['rails_env']}.#{node["opsworks"]["instance"]["hostname"]}"
   include_recipe 'datadog::dd-agent'
 
 
