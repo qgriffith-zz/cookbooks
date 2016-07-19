@@ -1,11 +1,9 @@
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
 
-  node.set[:datadog][:tags][:env] = deploy['rails_env']
-  node.set[:datadog][:api_key] = deploy[:environment_variables]['DATADOG_KEY']
-  node.set[:datadog][:hostname] = "rev.#{deploy['rails_env']}.#{node["opsworks"]["instance"]["hostname"]}"
-  include_recipe 'datadog::dd-agent'
-
+  if deploy['rails_env'] == 'production'
+    include_recipe 'opsworks_datadog'
+  end
 
   secrets_file = File.join(deploy[:current_path], 'config', 'secrets.yml')
   template "#{deploy[:deploy_to]}/shared/config/secrets.yml" do
