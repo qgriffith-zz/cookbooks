@@ -1,15 +1,21 @@
 DEPENDENCIES
   apt (= 2.9.2)
+  aws
   datadog
 
 GRAPH
   apt (2.9.2)
+  aws (3.4.0)
+    ohai (>= 2.1.0)
   chef_handler (1.1.9)
+  compat_resource (12.10.7)
   datadog (2.4.0)
     apt (>= 0.0.0)
     chef_handler (~> 1.1.0)
     windows (>= 0.0.0)
     yum (>= 0.0.0)
+  ohai (4.2.0)
+    compat_resource (>= 12.10)
   windows (1.44.1)
     chef_handler (>= 0.0.0)
   yum (3.11.0)
