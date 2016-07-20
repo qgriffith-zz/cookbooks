@@ -4,5 +4,4 @@ maintainer "On-Site.com"
 license "(c) 2015 All Rights Reserved"
 version "0.1.0"
 
-depends 'opsworks_datadog'
-depends 'aws'
+depends 's3_file'
