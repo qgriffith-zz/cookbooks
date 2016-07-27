@@ -13,4 +13,14 @@ node[:deploy].each do |application, deploy|
     aws_secret_access_key deploy[:environment_variables]['AWS_SECRET_ACCESS_KEY']
   end
 
+  template "/etc/profile.d/#{application}.sh" do
+    variables ({
+      :env => deploy[:environment_variables]
+    })
+    owner 'root'
+    group 'root'
+    mode  '0755'
+    source 'environment.sh.erb'
+  end
+
 end
