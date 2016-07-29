@@ -30,8 +30,6 @@ respawn limit 3 30
 # declaring these as normal exit codes, it just respawns.
 normal exit 0 TERM USR1
 
-instance $index
-
 env REDIS_HOST=<%= @redis_server %>
 
 
