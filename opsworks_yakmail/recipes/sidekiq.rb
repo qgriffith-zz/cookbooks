@@ -8,6 +8,9 @@ node[:deploy].each do |application, deploy|
     source "sidekiq.conf.erb"
     variables(
       redis_server: deploy[:environment_variables]['REDIS_HOST'],
+      AWS_REGION: deploy[:environment_variables]['AWS_REGION'],
+      AWS_ACCESS_KEY_ID: deploy[:environment_variables]['AWS_ACCESS_KEY_ID'],
+      AWS_SECRET_ACCESS_KEY: deploy[:environment_variables]['AWS_SECRET_ACCESS_KEY'],
       app_path: app_path,
       user: deploy[:user]
     )

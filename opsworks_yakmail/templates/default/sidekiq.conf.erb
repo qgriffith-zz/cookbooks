@@ -31,9 +31,14 @@ respawn limit 3 30
 normal exit 0 TERM USR1
 
 env REDIS_HOST=<%= @redis_server %>
-
+env AWS_REGION=<%= @AWS_REGION %>
+env AWS_ACCESS_KEY_ID=<%= @AWS_ACCESS_KEY_ID %>
+env AWS_SECRET_ACCESS_KEY=<%= @AWS_SECRET_ACCESS_KEY %>
 
 export REDIS_HOST
+export AWS_REGION
+export AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY
 
 chdir <%= @app_path %>
 
