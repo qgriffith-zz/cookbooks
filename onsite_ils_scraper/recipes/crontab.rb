@@ -4,6 +4,10 @@ node[:deploy].each do |application, deploy|
   app_path = File.join(deploy[:deploy_to], 'current')
   crontab_path = File.join(deploy[:home], 'crontab')
 
+  if deploy['rails_env'] == 'production'
+    include_recipe 'opsworks_datadog'
+  end
+
   template crontab_path do
     source "#{application}.crontab.erb"
     mode '0644'

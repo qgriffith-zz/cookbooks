@@ -3,6 +3,10 @@ node[:deploy].each do |application, deploy|
 
   app_path = File.join(deploy[:deploy_to], 'current')
 
+  if deploy['rails_env'] == 'production'
+    include_recipe 'opsworks_datadog'
+  end
+
   template "/etc/init/sidekiq.conf" do
     source "sidekiq.conf.erb"
 
