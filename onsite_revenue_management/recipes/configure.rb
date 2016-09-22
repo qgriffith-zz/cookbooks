@@ -57,10 +57,10 @@ node[:deploy].each do |application, deploy|
     group deploy[:group]
     source 'application.yml.erb'
     variables(
-      microbunny_host: deploy[:environment_variables]['microbunny_host'],
-      microbunny_username: deploy[:environment_variables]['microbunny_host'],
-      microbunny_vhost: deploy[:environment_variables]['microbunny_vhost'],
-      microbunny_password: deploy[:environment_variables]['microbunny_password']
+      microbunny_host: deploy[:environment_variables]['MICROBUNNY_HOST'],
+      microbunny_username: deploy[:environment_variables]['MICROBUNNY_HOST'],
+      microbunny_vhost: deploy[:environment_variables]['MICROBUNNY_VHOST'],
+      microbunny_password: deploy[:environment_variables]['MICROBUNNY_PASSWORD']
     )
     only_if do
       deploy[:database][:host].present? &&
