@@ -10,9 +10,7 @@ node[:deploy].each do |application, deploy|
     source 'environment.sh.erb'
   end
 
-end
-
-
-if deploy['rails_env'] == 'production'
-  include_recipe 'opsworks_datadog'
+  if deploy['rails_env'] == 'production'
+    include_recipe 'opsworks_datadog'
+  end
 end
