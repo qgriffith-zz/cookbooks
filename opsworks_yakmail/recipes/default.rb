@@ -11,3 +11,8 @@ node[:deploy].each do |application, deploy|
   end
 
 end
+
+
+if deploy['rails_env'] == 'production'
+  include_recipe 'opsworks_datadog'
+end
