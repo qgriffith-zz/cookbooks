@@ -49,22 +49,4 @@ node[:deploy].each do |application, deploy|
         File.directory?("#{deploy[:deploy_to]}/shared/config/")
     end
   end
-
-  application_file = File.join(deploy[:current_path], 'config', 'application.yml')
-  template "#{deploy[:deploy_to]}/shared/config/application.yml" do
-    mode  '0644'
-    owner deploy[:user]
-    group deploy[:group]
-    source 'application.yml.erb'
-    variables(
-      microbunny_host: deploy[:environment_variables]['microbunny_host'],
-      microbunny_username: deploy[:environment_variables]['microbunny_host'],
-      microbunny_vhost: deploy[:environment_variables]['microbunny_vhost'],
-      microbunny_password: deploy[:environment_variables]['microbunny_password']
-    )
-    only_if do
-      deploy[:database][:host].present? &&
-        File.directory?("#{deploy[:deploy_to]}/shared/config/")
-    end
-  end
 end
