@@ -8,6 +8,7 @@ node[:deploy].each do |application, deploy|
     mode  '0755'
     source 'environment.sh.erb'
   end
+  app_path = File.join(deploy[:deploy_to], 'current')
 
   template "/etc/init/sidekiq.conf" do
     source "sidekiq.conf.erb"
