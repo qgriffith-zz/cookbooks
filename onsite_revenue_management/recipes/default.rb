@@ -10,11 +10,11 @@ node[:deploy].each do |application, deploy|
   end
 end
 
-
-cookbook_file '/etc/init/sidekiq.conf' do
-  source 'sidekiq.conf'
-  owner  'root'
-  group  'root'
-  mode   '0644'
+template "/etc/init/sidekiq.conf" do
+  source "sidekiq.conf.erb"
+  variables(
+    redis_server: deploy[:environment_variables]['REDIS_HOST'],
+    app_path: app_path,
+    user: deploy[:user]
+  )
 end
-
