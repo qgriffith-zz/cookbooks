@@ -9,3 +9,12 @@ node[:deploy].each do |application, deploy|
     source 'environment.sh.erb'
   end
 end
+
+
+cookbook_file '/etc/init/sidekiq.conf' do
+  source 'sidekiq.conf'
+  owner  'root'
+  group  'root'
+  mode   '0644'
+end
+
