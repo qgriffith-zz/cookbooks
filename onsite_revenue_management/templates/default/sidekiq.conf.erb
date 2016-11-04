@@ -29,11 +29,11 @@ respawn limit 3 30
 # TERM and USR1 are sent by sidekiqctl when stopping sidekiq.  Without
 # declaring these as normal exit codes, it just respawns.
 normal exit 0 TERM USR1
+<% @environment_vars.each do |key, value| %>
+env <%= key %>=<%= value %>
 
-env REDIS_HOST=<%= @redis_server %>
-
-export REDIS_HOST
-
+export <%= key %>
+<% end %>
 
 chdir <%= @app_path %>
 

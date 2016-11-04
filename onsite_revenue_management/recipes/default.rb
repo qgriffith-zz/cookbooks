@@ -13,7 +13,7 @@ node[:deploy].each do |application, deploy|
   template "/etc/init/sidekiq.conf" do
     source "sidekiq.conf.erb"
     variables(
-      redis_server: deploy[:environment_variables]['REDIS_HOST'],
+      environment_vars: deploy[:environment_variables],
       app_path: app_path,
       user: deploy[:user]
     )
