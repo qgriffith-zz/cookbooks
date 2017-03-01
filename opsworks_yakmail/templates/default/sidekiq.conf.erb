@@ -34,11 +34,13 @@ env REDIS_HOST=<%= @redis_server %>
 env AWS_REGION=<%= @AWS_REGION %>
 env AWS_ACCESS_KEY_ID=<%= @AWS_ACCESS_KEY_ID %>
 env AWS_SECRET_ACCESS_KEY=<%= @AWS_SECRET_ACCESS_KEY %>
+env SECRET_KEY_BASE=<%= @SECRET_KEY_BASE %>
 
 export REDIS_HOST
 export AWS_REGION
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY
+export SECRET_KEY_BASE
 
 chdir <%= @app_path %>
 
@@ -46,6 +48,6 @@ script
 # this script runs in /bin/sh by default
 # respawn as bash so we can set up the environment
 exec /bin/bash <<EOT
- exec bundle exec sidekiq -L log/sidekiq.log
+ exec bundle exec sidekiq -L log/sidekiq.log -e <%= @RAILS_ENV %>
 EOT
 end script

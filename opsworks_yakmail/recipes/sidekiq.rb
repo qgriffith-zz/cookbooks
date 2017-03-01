@@ -12,6 +12,8 @@ node[:deploy].each do |application, deploy|
       AWS_ACCESS_KEY_ID: deploy[:environment_variables]['AWS_ACCESS_KEY_ID'],
       AWS_SECRET_ACCESS_KEY: deploy[:environment_variables]['AWS_SECRET_ACCESS_KEY'],
       app_path: app_path,
+      RAILS_ENV: deploy[:rails_env],
+      SECRET_KEY_BASE: deploy[:environment_variables]['SECRET_KEY_BASE'],
       user: deploy[:user]
     )
   end
