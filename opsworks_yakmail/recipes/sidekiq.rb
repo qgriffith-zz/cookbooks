@@ -22,5 +22,5 @@ end
 service "sidekiq" do
   provider Chef::Provider::Service::Upstart
   subscribes :restart, "template[/etc/init/sidekiq.conf]", :delayed
-  action [:enable, :start]
+  action [:enable, :start, :restart]
 end
